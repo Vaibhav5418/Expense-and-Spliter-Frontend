@@ -102,7 +102,7 @@ const Login = ({ onLogin }) => {
               : 'bg-gradient-to-r from-green-700 to-green-500 shadow-green-600/20 active:translate-y-0.5'
               }`}
           >
-            {isLoading ? 'Verifying Identity...' : (
+            {isLoading ? 'Verifying Identity......' : (
               <>Authorize Session <ArrowRight className="w-4 h-4" /></>
             )}
           </motion.button>
