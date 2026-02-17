@@ -7,8 +7,7 @@ import {
     LogOut,
     ChevronLeft,
     ChevronRight,
-    Menu,
-    Wallet
+    Menu
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx } from 'clsx';
@@ -69,18 +68,10 @@ const Sidebar = ({ activeTab, setActiveTab, onLogout }) => {
                 <div className="h-16 flex items-center justify-between px-4 border-b border-slate-200">
                     {!isCollapsed && (
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center flex-shrink-0">
-                                <Wallet className="h-5 w-5 text-white" />
-                            </div>
                             <div className="flex flex-col">
                                 <span className="text-lg font-semibold tracking-tight text-slate-900">FinPulse</span>
                                 <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">Enterprise</span>
                             </div>
-                        </div>
-                    )}
-                    {isCollapsed && (
-                        <div className="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center mx-auto">
-                            <Wallet className="h-5 w-5 text-white" />
                         </div>
                     )}
                     <button
