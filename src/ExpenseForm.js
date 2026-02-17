@@ -3,8 +3,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Load the base URL from .env
-const baseURL = process.env.REACT_APP_BASE_URL;
+// Load the base URL from .env or detect cloud environment
+const baseURL = process.env.REACT_APP_BASE_URL ||
+  (window.location.hostname.includes('vercel.app')
+    ? 'https://expense-and-spliter-backend.onrender.com/api'
+    : 'http://localhost:5000/api');
 
 const ExpenseForm = ({ onAdd }) => {
   const [title, setTitle] = useState('');
@@ -43,7 +46,7 @@ const ExpenseForm = ({ onAdd }) => {
       setAmount('');
       setDate('');
       setTimeout(() => setShowSuccess(false), 2000);
-      
+
     } catch (error) {
       console.error('❌ Error adding expense:', error.response?.data || error.message);
       alert('Failed to add expense');
@@ -52,7 +55,7 @@ const ExpenseForm = ({ onAdd }) => {
     }
   };
 
-    return (
+  return (
     <div className="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-gray-100 relative overflow-hidden">
       {/* Success overlay */}
       {showSuccess && (
@@ -150,11 +153,10 @@ const ExpenseForm = ({ onAdd }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${
-            isLoading
+          className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${isLoading
               ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg hover:shadow-xl'
-          }`}
+            }`}
         >
           {isLoading ? (
             <div className="flex items-center justify-center">

@@ -4,7 +4,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, User, ArrowRight, ShieldCheck } from 'lucide-react';
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = process.env.REACT_APP_BASE_URL ||
+  (window.location.hostname.includes('vercel.app')
+    ? 'https://expense-and-spliter-backend.onrender.com/api'
+    : 'http://localhost:5000/api');
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
