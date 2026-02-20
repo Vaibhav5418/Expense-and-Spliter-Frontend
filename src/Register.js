@@ -11,6 +11,8 @@ const baseURL = process.env.REACT_APP_BASE_URL ||
 
 const Register = () => {
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ const Register = () => {
     }
     setIsLoading(true);
     try {
-      await axios.post(`${baseURL}/register`, { username, password });
+      await axios.post(`${baseURL}/register`, { username, name, email, password });
       setShowSuccess(true);
       setTimeout(() => navigate('/login'), 2500);
     } catch (err) {
@@ -95,6 +97,34 @@ const Register = () => {
             {/* Form */}
             <form onSubmit={handleRegister} className="space-y-4 sm:space-y-6">
               <div className="space-y-3 sm:space-y-4">
+                <div className="relative group">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-green-600 transition-colors">
+                    <UserPlus className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    value={name}
+                    required
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full pl-12 pr-6 py-3.5 sm:py-4 bg-white border-2 border-transparent rounded-xl sm:rounded-2xl focus:border-green-600 focus:bg-white transition-all outline-none font-bold text-sm shadow-inner"
+                  />
+                </div>
+
+                <div className="relative group">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-green-600 transition-colors">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-12 pr-6 py-3.5 sm:py-4 bg-white border-2 border-transparent rounded-xl sm:rounded-2xl focus:border-green-600 focus:bg-white transition-all outline-none font-bold text-sm shadow-inner"
+                  />
+                </div>
+
                 <div className="relative group">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-green-600 transition-colors">
                     <ShieldCheck className="w-4 h-4" />

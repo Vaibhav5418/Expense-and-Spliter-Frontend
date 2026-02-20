@@ -21,7 +21,7 @@ const Login = ({ onLogin }) => {
 
     try {
       const res = await axios.post(`${baseURL}/login`, {
-        username,
+        identifier: username, // Send as identifier (can be email or username)
         password,
       });
 
@@ -72,7 +72,7 @@ const Login = ({ onLogin }) => {
               </div>
               <input
                 type="text"
-                placeholder="Operative ID"
+                placeholder="Email / Operative ID"
                 value={username}
                 required
                 onChange={(e) => setUsername(e.target.value)}

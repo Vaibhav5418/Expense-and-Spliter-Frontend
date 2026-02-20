@@ -572,21 +572,21 @@ const ExpenseList = ({ activeTab }) => {
   };
 
   return (
-    <div className="p-6 lg:p-10 space-y-10 animate-in fade-in slide-in-from-bottom-3 duration-1000">
+    <div className="p-4 sm:p-6 lg:p-10 space-y-10 animate-in fade-in slide-in-from-bottom-3 duration-1000">
 
-      {/* Header with Search & Global Actions */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sticky top-0 bg-[var(--background)]/80 backdrop-blur-xl z-30 py-4 -mx-6 px-6 lg:-mx-10 lg:px-10 border-b border-[var(--border)]/50">
+      {/* Header with Unified Brand & Glass Tokens */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sticky top-0 bg-[var(--background)]/80 backdrop-blur-xl z-30 py-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 border-b border-[var(--border)]/50">
         <div className="flex items-center justify-between lg:justify-start gap-4">
           <div className="lg:hidden w-12" /> {/* Spacer for mobile menu trigger */}
           <div>
             <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--foreground)] flex items-center gap-3">
-              {activeTab === 'dashboard' && <><div className="hidden sm:block w-2 h-8 bg-green-600 rounded-full" /> Executive Dash</>}
-              {activeTab === 'expenses' && <><div className="hidden sm:block w-2 h-8 bg-green-600 rounded-full" /> Transaction Hub</>}
-              {activeTab === 'analytics' && <><div className="hidden sm:block w-2 h-8 bg-blue-500 rounded-full" /> Portfolio Audit</>}
-              {activeTab === 'insights' && <><div className="hidden sm:block w-2 h-8 bg-amber-500 rounded-full" /> Insight Node</>}
+              {activeTab === 'dashboard' && <><div className="hidden sm:block w-2 h-8 bg-green-600 rounded-full" /> Executive Command</>}
+              {activeTab === 'expenses' && <><div className="hidden sm:block w-2 h-8 bg-green-600 rounded-full" /> Portfolio Ledger</>}
+              {activeTab === 'analytics' && <><div className="hidden sm:block w-2 h-8 bg-blue-500 rounded-full" /> Data Analytics</>}
+              {activeTab === 'insights' && <><div className="hidden sm:block w-2 h-8 bg-amber-500 rounded-full" /> Workspace Intelligence</>}
             </h2>
             <p className="text-slate-400 font-bold uppercase tracking-[0.2em] text-[8px] sm:text-[10px] mt-1 sm:mt-2">
-              Enterprise Fiscal Period: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+              {activeTab === 'insights' ? 'Portfolio Audit Node' : `Enterprise Fiscal Period: ${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`}
             </p>
           </div>
         </div>
