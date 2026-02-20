@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -97,7 +97,7 @@ const SplitterAnalytics = () => {
         } catch (e) { return null; }
     }, []);
 
-    const fetchAnalyticsData = async () => {
+    const fetchAnalyticsData = useCallback(async () => {
         setLoading(true);
         try {
             const masterData = await analyticsService.fetchMasterData();
@@ -108,11 +108,11 @@ const SplitterAnalytics = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [currentUserId]);
 
     useEffect(() => {
         fetchAnalyticsData();
-    }, [currentUserId]);
+    }, [fetchAnalyticsData]);
 
     // --- Chart Configs ---
     const doughnutData = analytics ? {
